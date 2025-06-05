@@ -1,0 +1,19 @@
+[
+  {
+    "batchId": "batch002",
+    "farmName": "MushroomFortuneFarm",
+    "dateRegistered": "2025-06-05",
+    "supplierInfo": "-",
+    "woodType": "-",
+    "sawdustDate": "-",
+    "compostUsed": "-",
+    "nitrateUsed": "-",
+    "autoclaved": "false",
+    "temp": "-",
+    "humidity": "-",
+    "grainCulture": "-",
+    "durationDays": "-",
+    "harvestDate": "-",
+    "weightKg": "-"
+  }
+]

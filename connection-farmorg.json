@@ -1,0 +1,34 @@
+{
+  "name": "mushroom-network",
+  "version": "1.0.0",
+  "client": {
+    "organization": "FarmOrg",
+    "connection": {
+      "timeout": {
+        "peer": { "endorser": "300" },
+        "orderer": "300"
+      }
+    }
+  },
+  "organizations": {
+    "FarmOrg": {
+      "mspid": "FarmOrgMSP",
+      "peers": ["peer0.farmorg.example.com"],
+      "certificateAuthorities": ["ca.farmorg.example.com"]
+    }
+  },
+  "peers": {
+    "peer0.farmorg.example.com": {
+      "url": "grpc://localhost:7051"
+    }
+  },
+  "certificateAuthorities": {
+    "ca.farmorg.example.com": {
+      "url": "http://localhost:7054",
+      "caName": "ca-farmorg",
+      "httpOptions": {
+        "verify": false
+      }
+    }
+  }
+}
