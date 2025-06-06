@@ -1,18 +1,26 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
-const path = require("path");
+const { getGateway } = require("./gateway");
 
 const app = express();
 app.use(cors());
 
-app.get("/api/trace/:batchId", (req, res) => {
-  const filePath = path.join(__dirname, "data", `${req.params.batchId}.json`);
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: "Batch not found" });
+app.get("/api/trace/:batchId", async (req, res) => {
+  const { batchId } = req.params;
+
+  try {
+    const gateway = await getGateway();
+    const network = await gateway.getNetwork("mushroomchannel");
+    const contract = network.getContract("mushroomcontract");
+
+    const result = await contract.evaluateTransaction("GetBatchHistory", batchId);
+    const history = JSON.parse(result.toString());
+
+    res.json({ batchId, history });
+  } catch (err) {
+    console.error("Blockchain query failed:", err);
+    res.status(500).json({ error: "Failed to retrieve batch from blockchain" });
   }
-  const data = fs.readFileSync(filePath, "utf8");
-  res.json(JSON.parse(data));
 });
 
 app.listen(3001, () => console.log("✅ Backend running on port 3001"));
