@@ -8,10 +8,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "fabric-network": "^2.2.20"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
